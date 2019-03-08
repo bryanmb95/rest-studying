@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 var usuarios = []
 
@@ -16,7 +17,15 @@ app.get('/listar-usuarios', function(req, res) {
 });
 
 app.post("/cadastrar-usuarios", function(req, res) {
-    const usuario = req.body.nome
+    const nome = req.body.nome
+    const idade = req.body.idade
+    const sexo = req.body.sexo
+    const usuario = {
+        nome: nome,
+        idade: idade,
+        sexo: sexo
+    }
+    usuarios.push(usuario);
     res.send(usuario);
 
 
